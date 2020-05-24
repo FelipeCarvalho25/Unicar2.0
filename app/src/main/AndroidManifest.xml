@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActivityCadastros" />
+        <activity android:name=".ActivityConsultas" />
     </application>
 
 </manifest>

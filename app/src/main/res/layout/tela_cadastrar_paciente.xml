@@ -35,7 +35,7 @@
             android:text="Nome do Paciente:" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/etNomePac"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -48,13 +48,10 @@
             android:layout_height="wrap_content"
             android:text="Grupo Sanguíneo:" />
 
-        <EditText
-            android:id="@+id/editText4"
+        <Spinner
+            android:id="@+id/spGrpSan"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Grupo Sanguíneo" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/textView4"
@@ -63,7 +60,7 @@
             android:text="Logradouro:" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/etEnderecoPAc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -77,7 +74,7 @@
             android:text="Número:" />
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/etNumPAc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -91,7 +88,7 @@
             android:text="Cidade:" />
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/etCidadPac"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -105,7 +102,7 @@
             android:text="UF:" />
 
         <EditText
-            android:id="@+id/editText8"
+            android:id="@+id/etUFPac"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -119,7 +116,7 @@
             android:text="Telefone Celular:" />
 
         <EditText
-            android:id="@+id/editText10"
+            android:id="@+id/etCellPac"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -133,7 +130,7 @@
             android:text="Telefone Fixo:" />
 
         <EditText
-            android:id="@+id/editText11"
+            android:id="@+id/etTelPac"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -141,7 +138,7 @@
             android:text="Telefone Fixo" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_cadastrarPac"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

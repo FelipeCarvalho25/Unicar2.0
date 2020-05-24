@@ -38,4 +38,8 @@ public class ActivityCadastros extends AppCompatActivity {
             }
         });
     }
+    public void jumpHome(View v) {
+        Intent it = new Intent(ActivityCadastros.this, MainActivity.class);
+        startActivity(it);
+    }
 }
