@@ -36,6 +36,7 @@ public class ActivityCadastrarPaciente extends AppCompatActivity {
         tUF = findViewById(R.id.etUFPac);
         tNumTel = findViewById(R.id.etTelPac);
         tNumCel = findViewById(R.id.etCellPac);
+        spGrpSan = findViewById(R.id.spGrpSan);
 
         String[] aGrpSan = new String[] {
                 "A+",

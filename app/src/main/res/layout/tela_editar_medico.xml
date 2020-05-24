@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFF"
-    tools:context=".ActivityCadastrarPaciente">
+    android:background="#FFFF">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -33,10 +32,10 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nome do Paciente:" />
+            android:text="Nome do Médico:" />
 
         <EditText
-            android:id="@+id/etNomePac"
+            android:id="@+id/etNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -47,12 +46,15 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Grupo Sanguíneo:" />
+            android:text="CRM:" />
 
-        <Spinner
-            android:id="@+id/spGrpSan"
+        <EditText
+            android:id="@+id/etCRM"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="CRM" />
 
         <TextView
             android:id="@+id/textView4"
@@ -61,7 +63,7 @@
             android:text="Logradouro:" />
 
         <EditText
-            android:id="@+id/etEnderecoPAc"
+            android:id="@+id/etEndereco"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -75,7 +77,7 @@
             android:text="Número:" />
 
         <EditText
-            android:id="@+id/etNumPAc"
+            android:id="@+id/etNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -89,7 +91,7 @@
             android:text="Cidade:" />
 
         <EditText
-            android:id="@+id/etCidadPac"
+            android:id="@+id/etCidade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -103,7 +105,7 @@
             android:text="UF:" />
 
         <EditText
-            android:id="@+id/etUFPac"
+            android:id="@+id/etUF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -117,7 +119,7 @@
             android:text="Telefone Celular:" />
 
         <EditText
-            android:id="@+id/etCellPac"
+            android:id="@+id/etCell"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -131,20 +133,36 @@
             android:text="Telefone Fixo:" />
 
         <EditText
-            android:id="@+id/etTelPac"
+            android:id="@+id/etTel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="phone"
             android:text="Telefone Fixo" />
 
-        <Button
-            android:id="@+id/btn_cadastrarPac"
-            style="@style/Widget.AppCompat.Button.Borderless"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#9C00BCD4"
-            android:text="Cadastrar" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_save_edit_medic"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#9C00BCD4"
+                android:text="Salvar" />
+
+            <Button
+                android:id="@+id/btn_exc_edit_medic"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#9C00BCD4"
+                android:text="Excluir" />
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

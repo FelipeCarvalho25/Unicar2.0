@@ -28,7 +28,7 @@ public class ActivityCadastrarConsulta extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.tela_cadastrar_consulta);
 
         consultMed = new ActivityConsultarMedico();
         consultPac = new ActivityConsultarPaciente();
@@ -36,6 +36,8 @@ public class ActivityCadastrarConsulta extends AppCompatActivity {
         tInicio = findViewById(R.id.etIniCOn);
         tFim = findViewById(R.id.etFimCon);
         tObervacoes = findViewById(R.id.etObs);
+        spPaciente = findViewById(R.id.spPac);
+        spMedico = findViewById(R.id.spMed);
         consultMed.getAllMedic(aMedicos);
         consultPac.getAllPacientes(aPacientes);
 

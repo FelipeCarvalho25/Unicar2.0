@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFF"
-    tools:context=".ActivityCadastrarConsulta">
+    tools:context=".EditarConsultActivity">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -39,7 +39,7 @@
             android:text="Paciente:" />
 
         <Spinner
-            android:id="@+id/spPac"
+            android:id="@+id/spPacEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -50,7 +50,7 @@
             android:text="Médico:" />
 
         <Spinner
-            android:id="@+id/spMed"
+            android:id="@+id/spMedEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -61,7 +61,7 @@
             android:text="Início da consulta:" />
 
         <EditText
-            android:id="@+id/etIniCOn"
+            android:id="@+id/etIniCOnEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -75,7 +75,7 @@
             android:text="Fim da consulta:" />
 
         <EditText
-            android:id="@+id/etFimCon"
+            android:id="@+id/etFimConEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -89,7 +89,7 @@
             android:text="Observações" />
 
         <EditText
-            android:id="@+id/etObs"
+            android:id="@+id/etObsEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -98,17 +98,34 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_cadastrarCon"
-        style="@android:style/Widget.DeviceDefault.Button.Borderless"
-        android:layout_width="356dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="45dp"
-        android:background="#9C00BCD4"
-        android:text="Cadastrar"
+    <LinearLayout
+        android:layout_width="410dp"
+        android:layout_height="69dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.144" />
+        app:layout_constraintVertical_bias="0.691">
+
+        <Button
+            android:id="@+id/btn_save_edit_consult"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#9C00BCD4"
+            android:text="Salvar" />
+
+        <Button
+            android:id="@+id/btn_exc_edit_consult"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#9C00BCD4"
+            android:text="Excluir" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

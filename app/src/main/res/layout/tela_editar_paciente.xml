@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFF"
-    tools:context=".ActivityCadastrarPaciente">
+    android:background="#FFFF">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -138,13 +137,29 @@
             android:inputType="phone"
             android:text="Telefone Fixo" />
 
-        <Button
-            android:id="@+id/btn_cadastrarPac"
-            style="@style/Widget.AppCompat.Button.Borderless"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#9C00BCD4"
-            android:text="Cadastrar" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_save_edit_pacient"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#9C00BCD4"
+                android:text="Salvar" />
+
+            <Button
+                android:id="@+id/btn_exc_edit_pacient"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#9C00BCD4"
+                android:text="Excluir" />
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
