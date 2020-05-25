@@ -25,7 +25,7 @@ public class ActivityCadastrarMedico extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.tela_cadastrar_medico);
 
         tNome = findViewById(R.id.etNome);
         tCRM = findViewById(R.id.etCRM);

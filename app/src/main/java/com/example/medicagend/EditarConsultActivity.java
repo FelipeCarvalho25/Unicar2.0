@@ -126,10 +126,9 @@ public class EditarConsultActivity extends AppCompatActivity {
             } catch (SQLException e) {
                 Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
-            tInicio.setText("");
-            tFim.setText("");
-            tObervacoes.setSelection(0);
             db.close();
+            Intent i = new Intent(getApplicationContext(), ActivityConsultarConsultas.class);
+            startActivity(i);
 
         }
     }
@@ -144,8 +143,8 @@ public class EditarConsultActivity extends AppCompatActivity {
         } catch (SQLException e) {
             Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
+        db.close();
         Intent i = new Intent(getApplicationContext(), ActivityConsultarConsultas.class);
         startActivity(i);
-        db.close();
     }
 }
