@@ -18,6 +18,14 @@
         </activity>
         <activity android:name=".ActivityCadastros" />
         <activity android:name=".ActivityConsultas" />
+        <activity android:name=".ActivityCadastrarMedico" />
+        <activity android:name=".ActivityCadastrarConsulta" />
+        <activity android:name=".ActivityCadastrarPaciente" />
+        <activity android:name=".ActivityConsultarConsultas" />
+        <activity android:name=".ActivityConsultarMedico" />
+        <activity android:name=".ActivityConsultarPaciente" />
+        <activity android:name=".EditarConsultActivity" />
+        <activity android:name=".EditarPacienteActivity" />
     </application>
 
 </manifest>

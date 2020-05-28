@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-class EditarPacienteActivity extends AppCompatActivity {
+public class EditarPacienteActivity extends AppCompatActivity {
     EditText tNome;
     Spinner spGrpSan;
     EditText tEndereco;

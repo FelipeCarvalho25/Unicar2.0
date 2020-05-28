@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +23,7 @@ public class ActivityConsultarMedico extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.medicos_list);
 
-        lvMedicos = findViewById(R.id.lvPacientes);
+        lvMedicos = findViewById(R.id.lvMedicaos);
         listarMedicos();
         lvMedicos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -38,7 +39,7 @@ public class ActivityConsultarMedico extends AppCompatActivity {
                 TextView tvListCelMed = v.findViewById(R.id.tvListCelMed);
                 TextView tvListTelMed = v.findViewById(R.id.tvListTelMed);
 
-                Intent i = new Intent(getApplicationContext(), EditarConsultActivity.class);
+                Intent i = new Intent(getApplicationContext(), EditarMedicoActivity.class);
                 i.putExtra("id", tvListId.getText().toString());
                 i.putExtra("nome", tvListNomMed.getText().toString());
                 i.putExtra("crm", tvListCRM.getText().toString());
@@ -53,50 +54,11 @@ public class ActivityConsultarMedico extends AppCompatActivity {
         });
 
     }
-    public String getMedicoById(int nId){
-        String sNameMedico;
-        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
-        StringBuilder sql = new StringBuilder();
-        sql.append("SELECT nome FROM medico");
-        sql.append(" WHERE _id = " + nId + ";");
-        Cursor dados = db.rawQuery(sql.toString(), null);
-        sNameMedico = dados.getString(dados.getColumnIndex("nome"));
-        db.close();
 
-        return sNameMedico;
-    }
-
-    public int getIdMedByNome(String sNome){
-        int nIdMed;
-        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
-        StringBuilder sql = new StringBuilder();
-        sql.append("SELECT _id FROM medico");
-        sql.append(" WHERE nome = '" + sNome + "';");
-        Cursor dados = db.rawQuery(sql.toString(), null);
-        nIdMed = dados.getInt(dados.getColumnIndex("_id"));
-        db.close();
-
-        return nIdMed;
-    }
-    public void getAllMedic(String[] aMed){
-        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
-        StringBuilder sql = new StringBuilder();
-        sql.append("SELECT nome FROM medico;");
-        Cursor dados = db.rawQuery(sql.toString(), null);
-        dados.moveToFirst();
-        ArrayList<String> names = new ArrayList<String>();
-        while(!dados.isAfterLast()) {
-            names.add(dados.getString(dados.getColumnIndex("name")));
-            dados.moveToNext();
-        }
-        dados.close();
-        aMed = names.toArray(new String[names.size()]);
-        db.close();
-    }
     private void listarMedicos() {
         db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * FROM medico;");
+        sql.append("SELECT _id,nome,crm, logradouro, numero, cidade, uf, celular, fixo  FROM medico;");
         Cursor dados = db.rawQuery(sql.toString(), null);
         String[] from = {"_id", "nome", "crm", "logradouro", "numero", "cidade", "uf", "celular", "fixo"};
         int[] to = {R.id.tvListIdMed, R.id.tvListNomeMed, R.id.tvListCRM, R.id.tvListEndMed, R.id.tvListNumMed, R.id.tvListCidPMed, R.id.tvListUfMed, R.id.tvListCelMed, R.id.tvListTelMed};
@@ -106,6 +68,8 @@ public class ActivityConsultarMedico extends AppCompatActivity {
 
         lvMedicos.setAdapter(scAdapter);
         db.close();
+
+
     }
     public void jumpHome(View v) {
         Intent it = new Intent(ActivityConsultarMedico.this, MainActivity.class);

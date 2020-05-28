@@ -20,8 +20,8 @@
         app:srcCompat="@drawable/simb" />
 
     <LinearLayout
-        android:layout_width="410dp"
-        android:layout_height="637dp"
+        android:layout_width="409dp"
+        android:layout_height="601dp"
         android:layout_marginTop="7dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"

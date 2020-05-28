@@ -18,8 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        criarBD();
-        Button btn_cadastros = (Button)findViewById(R.id.btn_cadastro);
+        Button btn_cadastros = (Button)findViewById(R.id.btn_cadastroMain);
         btn_cadastros.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent it = new Intent(MainActivity.this, ActivityCadastros.class);
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btn_consultas = (Button)findViewById(R.id.btn_listar);
+        Button btn_consultas = (Button)findViewById(R.id.btn_listarMain);
         btn_consultas.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent it = new Intent(MainActivity.this, ActivityConsultas.class);

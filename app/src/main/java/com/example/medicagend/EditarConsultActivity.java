@@ -2,6 +2,7 @@ package com.example.medicagend;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 public class EditarConsultActivity extends AppCompatActivity {
     Spinner spPaciente;
@@ -38,8 +41,8 @@ public class EditarConsultActivity extends AppCompatActivity {
         tObervacoes = findViewById(R.id.etObsEdit);
         spPaciente = findViewById(R.id.spPacEdit);
         spMedico = findViewById(R.id.spMedEdit);
-        consultMed.getAllMedic(aMedicos);
-        consultPac.getAllPacientes(aPacientes);
+        getAllMedic(aMedicos);
+        getAllPacientes(aPacientes);
 
         ArrayAdapter<String> spArrayAdapter =
                 new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, aPacientes);
@@ -54,8 +57,8 @@ public class EditarConsultActivity extends AppCompatActivity {
         tObervacoes.setText(valores.getStringExtra("observacoes"));
         String pacienteId = valores.getStringExtra("paciente");
         String medicoId = valores.getStringExtra("medico");
-        pacienteId = consultPac.getPacientById(Integer.parseInt(pacienteId));
-        medicoId = consultMed.getMedicoById(Integer.parseInt(medicoId));
+        pacienteId = getPacientById(Integer.parseInt(pacienteId));
+        medicoId = getMedicoById(Integer.parseInt(medicoId));
 
         final String id = valores.getStringExtra("id");
 
@@ -91,14 +94,92 @@ public class EditarConsultActivity extends AppCompatActivity {
             }
         });
     }
+    private String getMedicoById(int nId){
+        String sNameMedico;
+        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT nome FROM medico");
+        sql.append(" WHERE _id = " + nId + ";");
+        Cursor dados = db.rawQuery(sql.toString(), null);
+        sNameMedico = dados.getString(dados.getColumnIndex("nome"));
+        db.close();
 
+        return sNameMedico;
+    }
+    private String getPacientById(int nId){
+        String sNamePaciente;
+        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT nome FROM paciente");
+        sql.append(" WHERE _id = " + nId + ";");
+        Cursor dados = db.rawQuery(sql.toString(), null);
+        sNamePaciente = dados.getString(dados.getColumnIndex("nome"));
+        db.close();
+
+        return sNamePaciente;
+    }
+    private void getAllPacientes(String[] aPac){
+        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT nome FROM paciente;");
+        Cursor dados = db.rawQuery(sql.toString(), null);
+        dados.moveToFirst();
+        ArrayList<String> names = new ArrayList<String>();
+        while(!dados.isAfterLast()) {
+            names.add(dados.getString(dados.getColumnIndex("name")));
+            dados.moveToNext();
+        }
+        dados.close();
+        aPac = names.toArray(new String[names.size()]);
+        db.close();
+    }
+    private void getAllMedic(String[] aMed){
+        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT nome FROM medico;");
+        Cursor dados = db.rawQuery(sql.toString(), null);
+        dados.moveToFirst();
+        ArrayList<String> names = new ArrayList<String>();
+        while(!dados.isAfterLast()) {
+            names.add(dados.getString(dados.getColumnIndex("nome")));
+            dados.moveToNext();
+        }
+        dados.close();
+        aMed = names.toArray(new String[names.size()]);
+
+        db.close();
+    }
+    private String getIdMedByNome(String sNome){
+        String nIdMed;
+        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT _id FROM medico");
+        sql.append(" WHERE nome = '" + sNome + "';");
+        Cursor dados = db.rawQuery(sql.toString(), null);
+        nIdMed = dados.getString(dados.getColumnIndex("_id"));
+        db.close();
+
+        return nIdMed;
+    }
+    public String getIdPacByNome(String sNome){
+        String nIdPac;
+        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT _id FROM paciente");
+        sql.append(" WHERE nome = '" + sNome + "';");
+        Cursor dados = db.rawQuery(sql.toString(), null);
+        nIdPac = dados.getString(dados.getColumnIndex("_id"));
+        db.close();
+
+        return nIdPac;
+    }
     private void editarConsulta () {
         String sInicio = tInicio.getText().toString().trim();
         String sFim = tFim.getText().toString().trim();
         String sObs = tObervacoes.getText().toString().trim();
 
-        int nPacCOd = 0;
-        int nMedCod = 0;
+        String nPacCOd = "0";
+        String nMedCod = "0";
         if(sInicio.equals("")) {
             Toast.makeText(getApplicationContext(), "A data de início não pode estar vazia!", Toast.LENGTH_LONG).show();
         } else if (sFim.equals("")) {
@@ -110,11 +191,11 @@ public class EditarConsultActivity extends AppCompatActivity {
             StringBuilder sql = new StringBuilder();
             String sMedico = spMedico.getSelectedItem().toString();
             String sPaciente = spPaciente.getSelectedItem().toString();
-            nMedCod = consultMed.getIdMedByNome(sMedico);
-            nPacCOd = consultPac.getIdPacByNome(sPaciente);
+            nMedCod = getIdMedByNome(sMedico);
+            nPacCOd = getIdPacByNome(sPaciente);
             sql.append("UPDATE consulta SET ");
-            sql.append(" paciente_id =" + nPacCOd );
-            sql.append(", medico_id =" + nMedCod + ", ");
+            sql.append(" paciente_id ='" + nPacCOd +"'");
+            sql.append(", medico_id ='" + nMedCod + "', ");
             sql.append("data_hora_inicio = '" + sInicio + "'"+ ", ");
             sql.append("data_hora_fim = '" + sFim + "'"+ ", ");
             sql.append("observacao = '" + sObs + "'");

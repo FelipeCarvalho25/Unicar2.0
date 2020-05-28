@@ -1,6 +1,6 @@
 package com.example.medicagend;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +12,7 @@ public class ActivityCadastros extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.cadastro_tela);
 
         Button btn_cadMed = (Button)findViewById(R.id.btn_cadMed);
         btn_cadMed.setOnClickListener(new View.OnClickListener() {
@@ -21,6 +21,7 @@ public class ActivityCadastros extends AppCompatActivity {
                 startActivity(it);
             }
         });
+
 
         Button btn_cadPac = (Button)findViewById(R.id.btn_CadPac);
         btn_cadPac.setOnClickListener(new View.OnClickListener() {

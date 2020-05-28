@@ -12,7 +12,7 @@ public class ActivityConsultas extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.lista_tela);
 
         Button btn_conMed = (Button)findViewById(R.id.btn_listMed);
         btn_conMed.setOnClickListener(new View.OnClickListener() {

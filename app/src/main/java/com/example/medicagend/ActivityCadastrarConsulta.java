@@ -2,6 +2,7 @@ package com.example.medicagend;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 public class ActivityCadastrarConsulta extends AppCompatActivity {
     Spinner spPaciente;
@@ -38,8 +41,8 @@ public class ActivityCadastrarConsulta extends AppCompatActivity {
         tObervacoes = findViewById(R.id.etObs);
         spPaciente = findViewById(R.id.spPac);
         spMedico = findViewById(R.id.spMed);
-        consultMed.getAllMedic(aMedicos);
-        consultPac.getAllPacientes(aPacientes);
+        aMedicos = getAllMedic();
+        aPacientes = getAllPacientes();
 
         ArrayAdapter<String> spArrayAdapter =
                 new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, aPacientes);
@@ -56,30 +59,97 @@ public class ActivityCadastrarConsulta extends AppCompatActivity {
             }
         });
     }
+    private String[] getAllMedic(){
+        String[] aMed;
+        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT nome FROM medico;");
+        Cursor dados = db.rawQuery(sql.toString(), null);
+        dados.moveToFirst();
+        ArrayList<String> names = new ArrayList<String>();
+        while(!dados.isAfterLast()) {
+            names.add(dados.getString(dados.getColumnIndex("nome")));
+            dados.moveToNext();
+        }
+        dados.close();
+        aMed = names.toArray(new String[names.size()]);
 
+        db.close();
+        return aMed;
+    }
+    private String[] getAllPacientes(){
+        String[] aPac;
+        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT nome FROM paciente;");
+        Cursor dados = db.rawQuery(sql.toString(), null);
+        dados.moveToFirst();
+        ArrayList<String> names = new ArrayList<String>();
+        while(!dados.isAfterLast()) {
+            names.add(dados.getString(dados.getColumnIndex("nome")));
+            dados.moveToNext();
+        }
+        dados.close();
+        aPac = names.toArray(new String[names.size()]);
+        db.close();
+        return aPac;
+    }
+    private String getIdMedByNome(String sNome){
+        String nIdMed;
+        ArrayList<String> names = new ArrayList<String>();
+        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT _id FROM medico");
+        Cursor dados = db.rawQuery(sql.toString(), null);
+        dados.moveToFirst();
+        nIdMed = dados.getString(dados.getColumnIndex("_id"));
+        dados.close();
+
+        db.close();
+
+        return nIdMed;
+    }
+    private String getIdPacByNome(String sNome){
+        String nIdPac;
+        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT _id FROM paciente");
+        sql.append(" WHERE nome = '" + sNome + "';");
+        Cursor dados = db.rawQuery(sql.toString(), null);
+        dados.moveToFirst();
+        nIdPac = dados.getString(0);
+        db.close();
+
+        return nIdPac;
+    }
     private void insereConsulta () {
         String sInicio = tInicio.getText().toString().trim();
         String sFim = tFim.getText().toString().trim();
         String sObs = tObervacoes.getText().toString().trim();
+        String sMedico = spMedico.getSelectedItem().toString();
+        String sPaciente = spPaciente.getSelectedItem().toString();
+        String sPacCOd = "0";
+        String sMedCod = "0";
+        sMedCod = getIdMedByNome(sMedico);
+        sPacCOd = getIdPacByNome(sPaciente);
 
-        int nPacCOd = 0;
-        int nMedCod = 0;
         if(sInicio.equals("")) {
             Toast.makeText(getApplicationContext(), "A data de início não pode estar vazia!", Toast.LENGTH_LONG).show();
         } else if (sFim.equals("")) {
             Toast.makeText(getApplicationContext(), "A data de fim não pode estar vazia!", Toast.LENGTH_LONG).show();
         } else if (sObs.equals("")) {
             Toast.makeText(getApplicationContext(), "A data de fim não pode estar vazia!", Toast.LENGTH_LONG).show();
-        } else {
+        } else if (sMedCod.equals("0")) {
+            Toast.makeText(getApplicationContext(), "Selecao com problema!", Toast.LENGTH_LONG).show();
+        }else if (sPacCOd.equals("0")) {
+            Toast.makeText(getApplicationContext(), "Selecao com problema!", Toast.LENGTH_LONG).show();
+        }else {
             db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
             StringBuilder sql = new StringBuilder();
-            String sMedico = spMedico.getSelectedItem().toString();
-            String sPaciente = spPaciente.getSelectedItem().toString();
-            nMedCod = consultMed.getIdMedByNome(sMedico);
-            nPacCOd = consultPac.getIdPacByNome(sPaciente);
+
             sql.append("INSERT INTO consulta(paciente_id,medico_id,data_hora_inicio, data_hora_fim, observacao) VALUES (");
-            sql.append( nPacCOd );
-            sql.append("," + nMedCod + ", ");
+            sql.append( "'"+sPacCOd +"'");
+            sql.append(",'" + sMedCod + "', ");
             sql.append("'" + sInicio + "'"+ ", ");
             sql.append("'" + sFim + "'"+ ", ");
             sql.append("'" + sObs + "'");
@@ -93,7 +163,9 @@ public class ActivityCadastrarConsulta extends AppCompatActivity {
             }
             tInicio.setText("");
             tFim.setText("");
-            tObervacoes.setSelection(0);
+            tObervacoes.setText("");
+            spMedico.setSelection(0);
+            spPaciente.setSelection(0);
             db.close();
 
         }

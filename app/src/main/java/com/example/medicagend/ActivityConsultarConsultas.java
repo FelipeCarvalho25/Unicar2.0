@@ -36,8 +36,8 @@ public class ActivityConsultarConsultas extends AppCompatActivity {
 
                 Intent i = new Intent(getApplicationContext(), EditarConsultActivity.class);
                 i.putExtra("id", tvListId.getText().toString());
-                i.putExtra("paciente", tvListPacient.getText().toString());
-                i.putExtra("medico", tvListMedico.getText().toString());
+                i.putExtra("paciente_id", tvListPacient.getText().toString());
+                i.putExtra("medico_id", tvListMedico.getText().toString());
                 i.putExtra("data_hora_inicio", tvListDtHrIni.getText().toString());
                 i.putExtra("data_hora_fim", tvListDtHrFim.getText().toString());
                 i.putExtra("observacoes", tvListObs.getText().toString());
@@ -52,7 +52,7 @@ public class ActivityConsultarConsultas extends AppCompatActivity {
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT * FROM consulta;");
         Cursor dados = db.rawQuery(sql.toString(), null);
-        String[] from = {"_id", "paciente", "medico", "data_hora_inicio", "data_hora_fim", "observacoes"};
+        String[] from = {"_id", "paciente_id", "medico_id", "data_hora_inicio", "data_hora_fim", "observacao"};
         int[] to = {R.id.tvListIdCon, R.id.tvListPacient, R.id.tvListIMedico, R.id.tvListDtHrIni, R.id.tvListDtHrFim, R.id.tvListObs};
 
         SimpleCursorAdapter scAdapter =

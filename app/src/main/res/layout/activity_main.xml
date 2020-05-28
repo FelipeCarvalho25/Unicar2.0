@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btn_cadastro"
+        android:id="@+id/btn_cadastroMain"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="196dp"
         android:layout_height="44dp"
@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.414" />
 
     <Button
-        android:id="@+id/btn_listar"
+        android:id="@+id/btn_listarMain"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="196dp"
         android:layout_height="44dp"

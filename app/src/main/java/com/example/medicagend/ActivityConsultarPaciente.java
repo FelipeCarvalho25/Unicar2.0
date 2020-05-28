@@ -54,50 +54,12 @@ public class ActivityConsultarPaciente extends AppCompatActivity {
 
     }
 
-    public String getPacientById(int nId){
-        String sNamePaciente;
-        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
-        StringBuilder sql = new StringBuilder();
-        sql.append("SELECT nome FROM paciente");
-        sql.append(" WHERE _id = " + nId + ";");
-        Cursor dados = db.rawQuery(sql.toString(), null);
-        sNamePaciente = dados.getString(dados.getColumnIndex("nome"));
-        db.close();
 
-        return sNamePaciente;
-    }
 
-    public int getIdPacByNome(String sNome){
-        int nIdPac;
-        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
-        StringBuilder sql = new StringBuilder();
-        sql.append("SELECT _id FROM paciente");
-        sql.append(" WHERE nome = '" + sNome + "';");
-        Cursor dados = db.rawQuery(sql.toString(), null);
-        nIdPac = dados.getInt(dados.getColumnIndex("_id"));
-        db.close();
-
-        return nIdPac;
-    }
-    public void getAllPacientes(String[] aPac){
-        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
-        StringBuilder sql = new StringBuilder();
-        sql.append("SELECT nome FROM paciente;");
-        Cursor dados = db.rawQuery(sql.toString(), null);
-        dados.moveToFirst();
-        ArrayList<String> names = new ArrayList<String>();
-        while(!dados.isAfterLast()) {
-            names.add(dados.getString(dados.getColumnIndex("name")));
-            dados.moveToNext();
-        }
-        dados.close();
-        aPac = names.toArray(new String[names.size()]);
-        db.close();
-    }
     private void listarPacientes() {
         db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * FROM medico;");
+        sql.append("SELECT * FROM paciente;");
         Cursor dados = db.rawQuery(sql.toString(), null);
         String[] from = {"_id", "nome", "grp_sanguineo", "logradouro", "numero", "cidade", "uf", "celular", "fixo"};
         int[] to = {R.id.tvListIdPAc, R.id.tvListNomePac, R.id.tvListGrpSan, R.id.tvListEndPAc, R.id.tvListNumPac, R.id.tvListCidPAc, R.id.tvListUfPac, R.id.tvListCelPAc, R.id.tvListTelPac};

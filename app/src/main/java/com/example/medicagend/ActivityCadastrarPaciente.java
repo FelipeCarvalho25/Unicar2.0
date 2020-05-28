@@ -27,7 +27,7 @@ public class ActivityCadastrarPaciente extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.tela_cadastrar_paciente);
 
         tNome = findViewById(R.id.etNomePac);
         tEndereco = findViewById(R.id.etEnderecoPAc);
@@ -47,9 +47,9 @@ public class ActivityCadastrarPaciente extends AppCompatActivity {
                 "O+",
                 "O-"
         };
-        ArrayAdapter<String> spArrayAdapter =
+        ArrayAdapter<String> spArrayAdapterG =
                 new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, aGrpSan);
-        spGrpSan.setAdapter(spArrayAdapter);
+        spGrpSan.setAdapter(spArrayAdapterG);
 
         Button btn_cadastrar = findViewById(R.id.btn_cadastrarPac);
         btn_cadastrar.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +68,7 @@ public class ActivityCadastrarPaciente extends AppCompatActivity {
         String sUF = tUF.getText().toString().trim();
         String sNumTel = tNumTel.getText().toString().trim();
         String sNumCel = tNumCel.getText().toString().trim();
-        String sGrpSan = spGrpSan.getSelectedItem().toString();
+        int nGrpSan = spGrpSan.getSelectedItemPosition();
         if (sNome.equals("")) {
             Toast.makeText(getApplicationContext(), "O nome não pode estar vazio!", Toast.LENGTH_LONG).show();
         } else if (sEndereco.equals("")) {
@@ -86,9 +86,9 @@ public class ActivityCadastrarPaciente extends AppCompatActivity {
         } else {
             db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
             StringBuilder sql = new StringBuilder();
-            sql.append("INSERT INTO medico(nome,grp_sanguineo,logradouro, numero, cidade, uf, celular,fixo) VALUES (");
+            sql.append("INSERT INTO paciente(nome,grp_sanguineo,logradouro, numero, cidade, uf, celular,fixo) VALUES (");
             sql.append("'" + sNome + "'" + ", ");
-            sql.append("'" + sGrpSan + "'" + ", ");
+            sql.append("'" + Integer.toString(nGrpSan) + "'" + ", ");
             sql.append("'" + sEndereco + "'" + ", ");
             sql.append("'" + sNumero + "'" + ", ");
             sql.append("'" + sCidade + "'" + ", ");

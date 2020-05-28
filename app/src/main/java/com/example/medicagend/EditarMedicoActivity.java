@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-class EditarMedicoActivity extends AppCompatActivity {
+public class EditarMedicoActivity extends AppCompatActivity {
     EditText tNome;
     EditText tCRM;
     EditText tEndereco;
