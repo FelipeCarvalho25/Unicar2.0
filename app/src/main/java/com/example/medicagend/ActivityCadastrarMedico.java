@@ -6,11 +6,16 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 
 public class ActivityCadastrarMedico extends AppCompatActivity {
     EditText tNome;
@@ -18,7 +23,7 @@ public class ActivityCadastrarMedico extends AppCompatActivity {
     EditText tEndereco;
     EditText tNumero;
     EditText tCidade;
-    EditText tUF;
+    Spinner spUF;
     EditText tNumTel;
     EditText tNumCel;
     SQLiteDatabase db;
@@ -32,9 +37,29 @@ public class ActivityCadastrarMedico extends AppCompatActivity {
         tEndereco = findViewById(R.id.etEndereco);
         tNumero = findViewById(R.id.etNum);
         tCidade = findViewById(R.id.etCidade);
-        tUF = findViewById(R.id.etUF);
+        spUF = findViewById(R.id.spUfMed);
         tNumTel = findViewById(R.id.etTel);
         tNumCel = findViewById(R.id.etCell);
+
+        //FAz mascara de numero
+        //cell
+        SimpleMaskFormatter smf = new SimpleMaskFormatter("(NN)NNNNN-NNNN");
+        MaskTextWatcher mtw = new MaskTextWatcher(tNumCel, smf);
+        tNumCel.addTextChangedListener(mtw);
+        //ttel
+        smf = new SimpleMaskFormatter("(NN)NNNN-NNNN");
+        mtw = new MaskTextWatcher(tNumTel, smf);
+        tNumTel.addTextChangedListener(mtw);
+        //Faz mascara do CRM
+        smf = new SimpleMaskFormatter("NNNNNNNNNNNN/LL");
+        mtw = new MaskTextWatcher(tCRM, smf);
+        tCRM.addTextChangedListener(mtw);
+
+        String[] aUf = new String[] {"AC","AL", "AM", "AP", "BA","CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO"};
+        ArrayAdapter<String> spArrayAdapterH =
+                new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, aUf);
+        spUF.setAdapter(spArrayAdapterH);
+
 
         Button btn_cadastrar = findViewById(R.id.btn_cadastrarMedi);
         btn_cadastrar.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +76,7 @@ public class ActivityCadastrarMedico extends AppCompatActivity {
         String sEndereco = tEndereco.getText().toString().trim();
         String sNumero = tNumero.getText().toString().trim();
         String sCidade = tCidade.getText().toString().trim();
-        String sUF = tUF.getText().toString().trim();
+        String sUF = spUF.getSelectedItem().toString().trim();
         String sNumTel = tNumTel.getText().toString().trim();
         String sNumCel = tNumCel.getText().toString().trim();
 
@@ -96,7 +121,7 @@ public class ActivityCadastrarMedico extends AppCompatActivity {
             tEndereco.setText("");
             tNumero.setText("");
             tCidade.setText("");
-            tUF.setText("");
+            spUF.setSelection(0);
             tNumTel.setText("");
             tNumCel.setText("");
             db.close();

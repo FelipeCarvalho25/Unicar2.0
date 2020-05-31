@@ -20,14 +20,16 @@
         app:srcCompat="@drawable/simb" />
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="601dp"
+        android:layout_width="400dp"
+        android:layout_height="604dp"
         android:layout_marginTop="7dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4">
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.529">
 
         <TextView
             android:id="@+id/textView2"
@@ -41,7 +43,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Nome" />
+            android:hint="Nome" />
 
         <TextView
             android:id="@+id/textView3"
@@ -55,7 +57,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="CRM" />
+            android:hint="CRM" />
 
         <TextView
             android:id="@+id/textView4"
@@ -69,7 +71,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Logradouro" />
+            android:hint="Logradouro" />
 
         <TextView
             android:id="@+id/textView5"
@@ -83,7 +85,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Número" />
+            android:hint="Número" />
 
         <TextView
             android:id="@+id/textView6"
@@ -97,7 +99,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Cidade" />
+            android:hint="Cidade" />
 
         <TextView
             android:id="@+id/textView7"
@@ -105,13 +107,10 @@
             android:layout_height="wrap_content"
             android:text="UF:" />
 
-        <EditText
-            android:id="@+id/etUF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="UF" />
+        <Spinner
+            android:id="@+id/spUfMed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/textView8"
@@ -125,7 +124,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="phone"
-            android:text="Celular" />
+            android:hint="Celular" />
 
         <TextView
             android:id="@+id/textView9"
@@ -139,7 +138,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="phone"
-            android:text="Telefone Fixo" />
+            android:hint="Telefone Fixo" />
 
         <Button
             android:id="@+id/btn_cadastrarMedi"

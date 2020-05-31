@@ -19,8 +19,8 @@
         app:srcCompat="@drawable/simb" />
 
     <LinearLayout
-        android:layout_width="410dp"
-        android:layout_height="637dp"
+        android:layout_width="396dp"
+        android:layout_height="632dp"
         android:layout_marginTop="7dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,8 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Nome" />
+            android:hint="Nome"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView3"
@@ -53,8 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="CRM" />
+            android:hint="CRM"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView4"
@@ -67,8 +67,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Logradouro" />
+            android:hint="Logradouro"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView5"
@@ -81,8 +81,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Número" />
+            android:hint="Número"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView6"
@@ -95,8 +95,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Cidade" />
+            android:hint="Cidade"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView7"
@@ -109,8 +109,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="UF" />
+            android:hint="UF"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView8"
@@ -123,8 +123,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="phone"
-            android:text="Celular" />
+            android:hint="Celular"
+            android:inputType="phone" />
 
         <TextView
             android:id="@+id/textView9"
@@ -137,8 +137,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="phone"
-            android:text="Telefone Fixo" />
+            android:hint="Telefone Fixo"
+            android:inputType="phone" />
 
         <LinearLayout
             android:layout_width="match_parent"

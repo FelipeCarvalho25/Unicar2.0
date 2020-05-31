@@ -37,8 +37,14 @@ public class ActivityConsultarPaciente extends AppCompatActivity {
                 TextView tvListUfPac =  v.findViewById(R.id.tvListUfPac);
                 TextView tvListCelPac = v.findViewById(R.id.tvListCelPAc);
                 TextView tvListTelPac = v.findViewById(R.id.tvListTelPac);
+                tvListEndPAc.setVisibility(View.INVISIBLE);
+                tvListTelPac.setVisibility(View.INVISIBLE);
+                tvListCelPac.setVisibility(View.INVISIBLE);
+                tvListUfPac.setVisibility(View.INVISIBLE);
+                tvListCidPac.setVisibility(View.INVISIBLE);
+                tvListNumPac.setVisibility(View.INVISIBLE);
 
-                Intent i = new Intent(getApplicationContext(), EditarConsultActivity.class);
+                Intent i = new Intent(getApplicationContext(), EditarPacienteActivity.class);
                 i.putExtra("id", tvListId.getText().toString());
                 i.putExtra("nome", tvListNomPac.getText().toString());
                 i.putExtra("grp_sanguineo", tvListGrpSan.getText().toString());
@@ -72,6 +78,10 @@ public class ActivityConsultarPaciente extends AppCompatActivity {
     }
     public void jumpHome(View v) {
         Intent it = new Intent(ActivityConsultarPaciente.this, MainActivity.class);
+        startActivity(it);
+    }
+    public void jumptoAdd(View v) {
+        Intent it = new Intent(ActivityConsultarPaciente.this, ActivityCadastrarPaciente.class);
         startActivity(it);
     }
 }

@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/iconemassa"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/iconemassa_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -26,6 +26,7 @@
         <activity android:name=".ActivityConsultarPaciente" />
         <activity android:name=".EditarConsultActivity" />
         <activity android:name=".EditarPacienteActivity" />
+        <activity android:name=".EditarMedicoActivity" />
     </application>
 
 </manifest>

@@ -49,14 +49,14 @@ public class EditarMedicoActivity extends AppCompatActivity {
         final String id = valores.getStringExtra("id");
 
 
-        Button btn_save = findViewById(R.id.btn_save_edit_consult);
+        Button btn_save = findViewById(R.id.btn_save_edit_medic);
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alterarMedico();
             }
         });
-        Button btn_exc = findViewById(R.id.btn_exc_edit_consult);
+        Button btn_exc = findViewById(R.id.btn_exc_edit_medic);
         btn_exc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

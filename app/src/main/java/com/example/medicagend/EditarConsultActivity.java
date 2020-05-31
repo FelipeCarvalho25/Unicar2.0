@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
+
 import java.util.ArrayList;
 
 public class EditarConsultActivity extends AppCompatActivity {
@@ -22,27 +25,39 @@ public class EditarConsultActivity extends AppCompatActivity {
     Spinner spMedico;
     EditText tInicio;
     EditText tFim;
+    EditText tData;
     EditText tObervacoes;
     String[] aPacientes;
     String[] aMedicos;
-    ActivityConsultarMedico consultMed;
-    ActivityConsultarPaciente consultPac;
     SQLiteDatabase db;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_editar_consulta);
 
-        consultMed = new ActivityConsultarMedico();
-        consultPac = new ActivityConsultarPaciente();
 
         tInicio = findViewById(R.id.etIniCOnEdit);
         tFim = findViewById(R.id.etFimConEdit);
         tObervacoes = findViewById(R.id.etObsEdit);
         spPaciente = findViewById(R.id.spPacEdit);
         spMedico = findViewById(R.id.spMedEdit);
-        getAllMedic(aMedicos);
-        getAllPacientes(aPacientes);
+        aMedicos = getAllMedic();
+        aPacientes = getAllPacientes();
+        tData  = findViewById(R.id.etDateConEdit);
+
+        //FAz mascara de data
+        //TInicio
+        SimpleMaskFormatter smf = new SimpleMaskFormatter("NN:NN");
+        MaskTextWatcher mtw = new MaskTextWatcher(tInicio, smf);
+        tInicio.addTextChangedListener(mtw);
+        //tFIm
+        mtw = new MaskTextWatcher(tFim, smf);
+        tFim.addTextChangedListener(mtw);
+        //tDAta
+        smf = new SimpleMaskFormatter("NN/NN/NNNN");
+        mtw = new MaskTextWatcher(tData, smf);
+        tData.addTextChangedListener(mtw);
+
 
         ArrayAdapter<String> spArrayAdapter =
                 new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, aPacientes);
@@ -52,14 +67,12 @@ public class EditarConsultActivity extends AppCompatActivity {
         spMedico.setAdapter(spArrayAdapter);
 
         Intent valores = getIntent();
-        tInicio.setText(valores.getStringExtra("data_hora_inicio"));
-        tFim.setText(valores.getStringExtra("data_hora_fim"));
+        tData.setText(valores.getStringExtra("data_hora_inicio").trim().substring(0,10));
+        tInicio.setText(valores.getStringExtra("data_hora_inicio").trim().substring(11,16));
+        tFim.setText(valores.getStringExtra("data_hora_fim").trim().substring(11,16));
         tObervacoes.setText(valores.getStringExtra("observacoes"));
-        String pacienteId = valores.getStringExtra("paciente");
-        String medicoId = valores.getStringExtra("medico");
-        pacienteId = getPacientById(Integer.parseInt(pacienteId));
-        medicoId = getMedicoById(Integer.parseInt(medicoId));
-
+        String pacienteId = valores.getStringExtra("paciente_nome");
+        String medicoId = valores.getStringExtra("medico_nome");
         final String id = valores.getStringExtra("id");
 
         int aux = 0 ;
@@ -94,46 +107,34 @@ public class EditarConsultActivity extends AppCompatActivity {
             }
         });
     }
-    private String getMedicoById(int nId){
+   /* private String getMedicoById(String nId){
         String sNameMedico;
         db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT nome FROM medico");
-        sql.append(" WHERE _id = " + nId + ";");
+        sql.append(" WHERE _id = '" + nId + "';");
         Cursor dados = db.rawQuery(sql.toString(), null);
+        dados.moveToFirst();
         sNameMedico = dados.getString(dados.getColumnIndex("nome"));
         db.close();
 
         return sNameMedico;
     }
-    private String getPacientById(int nId){
+    private String getPacientById(String nId){
         String sNamePaciente;
         db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT nome FROM paciente");
-        sql.append(" WHERE _id = " + nId + ";");
+        sql.append(" WHERE _id = '" + nId + "';");
         Cursor dados = db.rawQuery(sql.toString(), null);
+        dados.moveToFirst();
         sNamePaciente = dados.getString(dados.getColumnIndex("nome"));
         db.close();
 
         return sNamePaciente;
-    }
-    private void getAllPacientes(String[] aPac){
-        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
-        StringBuilder sql = new StringBuilder();
-        sql.append("SELECT nome FROM paciente;");
-        Cursor dados = db.rawQuery(sql.toString(), null);
-        dados.moveToFirst();
-        ArrayList<String> names = new ArrayList<String>();
-        while(!dados.isAfterLast()) {
-            names.add(dados.getString(dados.getColumnIndex("name")));
-            dados.moveToNext();
-        }
-        dados.close();
-        aPac = names.toArray(new String[names.size()]);
-        db.close();
-    }
-    private void getAllMedic(String[] aMed){
+    }*/
+    private String[] getAllMedic(){
+        String[] aMed;
         db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT nome FROM medico;");
@@ -148,6 +149,24 @@ public class EditarConsultActivity extends AppCompatActivity {
         aMed = names.toArray(new String[names.size()]);
 
         db.close();
+        return aMed;
+    }
+    private String[] getAllPacientes(){
+        String[] aPac;
+        db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT nome FROM paciente;");
+        Cursor dados = db.rawQuery(sql.toString(), null);
+        dados.moveToFirst();
+        ArrayList<String> names = new ArrayList<String>();
+        while(!dados.isAfterLast()) {
+            names.add(dados.getString(dados.getColumnIndex("nome")));
+            dados.moveToNext();
+        }
+        dados.close();
+        aPac = names.toArray(new String[names.size()]);
+        db.close();
+        return aPac;
     }
     private String getIdMedByNome(String sNome){
         String nIdMed;
@@ -156,6 +175,7 @@ public class EditarConsultActivity extends AppCompatActivity {
         sql.append("SELECT _id FROM medico");
         sql.append(" WHERE nome = '" + sNome + "';");
         Cursor dados = db.rawQuery(sql.toString(), null);
+        dados.moveToFirst();
         nIdMed = dados.getString(dados.getColumnIndex("_id"));
         db.close();
 
@@ -168,6 +188,7 @@ public class EditarConsultActivity extends AppCompatActivity {
         sql.append("SELECT _id FROM paciente");
         sql.append(" WHERE nome = '" + sNome + "';");
         Cursor dados = db.rawQuery(sql.toString(), null);
+        dados.moveToFirst();
         nIdPac = dados.getString(dados.getColumnIndex("_id"));
         db.close();
 
@@ -217,7 +238,7 @@ public class EditarConsultActivity extends AppCompatActivity {
         db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
         StringBuilder sql = new StringBuilder();
         sql.append("DELETE FROM consulta ");
-        sql.append("WHERE _id = " + id + ";");
+        sql.append("WHERE _id = '" + id + "';");
         try {
             db.execSQL(sql.toString());
             Toast.makeText(getApplicationContext(), "Consulta excluído", Toast.LENGTH_LONG).show();

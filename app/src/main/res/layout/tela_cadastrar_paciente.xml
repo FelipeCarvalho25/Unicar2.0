@@ -20,8 +20,8 @@
         app:srcCompat="@drawable/simb" />
 
     <LinearLayout
-        android:layout_width="405dp"
-        android:layout_height="625dp"
+        android:layout_width="398dp"
+        android:layout_height="618dp"
         android:layout_marginTop="7dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Nome" />
+            android:hint="Nome" />
 
         <TextView
             android:id="@+id/textView3"
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Logradouro" />
+            android:hint="Logradouro" />
 
         <TextView
             android:id="@+id/textView5"
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Número" />
+            android:hint="Número" />
 
         <TextView
             android:id="@+id/textView6"
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Cidade" />
+            android:hint="Cidade" />
 
         <TextView
             android:id="@+id/textView7"
@@ -102,13 +102,10 @@
             android:layout_height="wrap_content"
             android:text="UF:" />
 
-        <EditText
-            android:id="@+id/etUFPac"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="UF" />
+        <Spinner
+            android:id="@+id/spUfPac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/textView8"
@@ -122,7 +119,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="phone"
-            android:text="Celular" />
+            android:hint="Celular" />
 
         <TextView
             android:id="@+id/textView9"
@@ -136,7 +133,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="phone"
-            android:text="Telefone Fixo" />
+            android:hint="Telefone Fixo" />
 
         <Button
             android:id="@+id/btn_cadastrarPac"

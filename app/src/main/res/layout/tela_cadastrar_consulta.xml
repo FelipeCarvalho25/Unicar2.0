@@ -21,16 +21,16 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="411dp"
-        android:layout_height="332dp"
+        android:layout_width="386dp"
+        android:layout_height="360dp"
         android:layout_marginTop="7dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.15">
+        app:layout_constraintVertical_bias="0.148">
 
         <TextView
             android:id="@+id/textView2"
@@ -58,42 +58,57 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Início da consulta:" />
+            android:text="Data da consulta:" />
 
         <EditText
-            android:id="@+id/etIniCOn"
+            android:id="@+id/etDateCon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="__/__/_____       :"
+            android:hint="  /  /    "
             android:inputType="date" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hora início:" />
+
+        <EditText
+            android:id="@+id/etHorIniCon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="  :  "
+            android:inputType="time" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fim da consulta:" />
+            android:text="Hora término:" />
 
         <EditText
-            android:id="@+id/etFimCon"
+            android:id="@+id/etHorFimCon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="__/__/_____       :"
-            android:inputType="date" />
+            android:hint="  :  "
+            android:inputType="time" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="Observações" />
 
         <EditText
             android:id="@+id/etObs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Observações"/>
+            android:hint="Observações"
+            android:inputType="textPersonName" />
 
     </LinearLayout>
 

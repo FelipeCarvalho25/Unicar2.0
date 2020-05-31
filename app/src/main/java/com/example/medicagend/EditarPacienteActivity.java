@@ -72,14 +72,14 @@ public class EditarPacienteActivity extends AppCompatActivity {
         spGrpSan.setSelection(aux);
         final String id = valores.getStringExtra("id");
 
-        Button btn_save = findViewById(R.id.btn_save_edit_consult);
+        Button btn_save = findViewById(R.id.btn_save_edit_pacient);
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alteraPaciente();
             }
         });
-        Button btn_exc = findViewById(R.id.btn_exc_edit_consult);
+        Button btn_exc = findViewById(R.id.btn_exc_edit_pacient);
         btn_exc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

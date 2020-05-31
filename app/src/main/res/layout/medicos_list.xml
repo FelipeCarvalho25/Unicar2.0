@@ -8,6 +8,22 @@
     tools:context=".ActivityConsultarMedico">
 
     <ImageButton
+        android:id="@+id/btn_addMed"
+        style="@android:style/Widget.Holo.Light.ImageButton"
+        android:layout_width="30dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="69dp"
+        android:background="#FFFF"
+        android:onClick="jumptoAdd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.972"
+        app:srcCompat="@drawable/add" />
+
+    <ImageButton
         android:id="@+id/btn_home3"
         style="@android:style/Widget.Holo.Light.ImageButton"
         android:layout_width="61dp"
@@ -52,8 +68,8 @@
 
     <ListView
         android:id="@+id/lvMedicaos"
-        android:layout_width="411dp"
-        android:layout_height="529dp"
+        android:layout_width="376dp"
+        android:layout_height="517dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"

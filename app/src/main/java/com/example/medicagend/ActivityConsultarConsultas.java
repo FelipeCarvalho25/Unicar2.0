@@ -36,8 +36,8 @@ public class ActivityConsultarConsultas extends AppCompatActivity {
 
                 Intent i = new Intent(getApplicationContext(), EditarConsultActivity.class);
                 i.putExtra("id", tvListId.getText().toString());
-                i.putExtra("paciente_id", tvListPacient.getText().toString());
-                i.putExtra("medico_id", tvListMedico.getText().toString());
+                i.putExtra("paciente_nome", tvListPacient.getText().toString());
+                i.putExtra("medico_nome", tvListMedico.getText().toString());
                 i.putExtra("data_hora_inicio", tvListDtHrIni.getText().toString());
                 i.putExtra("data_hora_fim", tvListDtHrFim.getText().toString());
                 i.putExtra("observacoes", tvListObs.getText().toString());
@@ -50,9 +50,11 @@ public class ActivityConsultarConsultas extends AppCompatActivity {
     private void listarConsultas() {
         db = openOrCreateDatabase("consulta.db", Context.MODE_PRIVATE, null);
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * FROM consulta;");
+        sql.append("SELECT consulta._id, paciente.nome as paciente_nome, medico.nome as medico_nome, consulta.data_hora_inicio,consulta.data_hora_fim, consulta.observacao FROM consulta");
+        sql.append(" INNER JOIN medico ON (medico._id = consulta.medico_id)");
+        sql.append(" INNER JOIN paciente ON (paciente._id = consulta.paciente_id);");
         Cursor dados = db.rawQuery(sql.toString(), null);
-        String[] from = {"_id", "paciente_id", "medico_id", "data_hora_inicio", "data_hora_fim", "observacao"};
+        String[] from = {"_id", "paciente_nome", "medico_nome", "data_hora_inicio", "data_hora_fim", "observacao"};
         int[] to = {R.id.tvListIdCon, R.id.tvListPacient, R.id.tvListIMedico, R.id.tvListDtHrIni, R.id.tvListDtHrFim, R.id.tvListObs};
 
         SimpleCursorAdapter scAdapter =
@@ -63,6 +65,10 @@ public class ActivityConsultarConsultas extends AppCompatActivity {
     }
     public void jumpHome(View v) {
         Intent it = new Intent(ActivityConsultarConsultas.this, MainActivity.class);
+        startActivity(it);
+    }
+    public void jumptoAdd(View v) {
+        Intent it = new Intent(ActivityConsultarConsultas.this, ActivityCadastrarConsulta.class);
         startActivity(it);
     }
 }

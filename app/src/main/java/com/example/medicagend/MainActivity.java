@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        criarBD();
+
         Button btn_cadastros = (Button)findViewById(R.id.btn_cadastroMain);
         btn_cadastros.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
+
+
     }
 
     private void criarBD () {

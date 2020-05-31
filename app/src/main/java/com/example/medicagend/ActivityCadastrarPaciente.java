@@ -14,13 +14,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
+
 public class ActivityCadastrarPaciente extends AppCompatActivity {
     EditText tNome;
     Spinner spGrpSan;
     EditText tEndereco;
     EditText tNumero;
     EditText tCidade;
-    EditText tUF;
+    Spinner spUF;
     EditText tNumTel;
     EditText tNumCel;
     SQLiteDatabase db;
@@ -33,10 +36,20 @@ public class ActivityCadastrarPaciente extends AppCompatActivity {
         tEndereco = findViewById(R.id.etEnderecoPAc);
         tNumero = findViewById(R.id.etNumPAc);
         tCidade = findViewById(R.id.etCidadPac);
-        tUF = findViewById(R.id.etUFPac);
+        spUF = findViewById(R.id.spUfPac);
         tNumTel = findViewById(R.id.etTelPac);
         tNumCel = findViewById(R.id.etCellPac);
         spGrpSan = findViewById(R.id.spGrpSan);
+
+        //FAz mascara de numero
+        //cell
+        SimpleMaskFormatter smf = new SimpleMaskFormatter("(NN)NNNNN-NNNN");
+        MaskTextWatcher mtw = new MaskTextWatcher(tNumCel, smf);
+        tNumCel.addTextChangedListener(mtw);
+        //ttel
+        smf = new SimpleMaskFormatter("(NN)NNNN-NNNN");
+        mtw = new MaskTextWatcher(tNumTel, smf);
+        tNumTel.addTextChangedListener(mtw);
 
         String[] aGrpSan = new String[] {
                 "A+",
@@ -50,6 +63,11 @@ public class ActivityCadastrarPaciente extends AppCompatActivity {
         ArrayAdapter<String> spArrayAdapterG =
                 new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, aGrpSan);
         spGrpSan.setAdapter(spArrayAdapterG);
+
+        String[] aUf = new String[] {"AC","AL", "AM", "AP", "BA","CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO"};
+        ArrayAdapter<String> spArrayAdapterH =
+                new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, aUf);
+        spUF.setAdapter(spArrayAdapterH);
 
         Button btn_cadastrar = findViewById(R.id.btn_cadastrarPac);
         btn_cadastrar.setOnClickListener(new View.OnClickListener() {
@@ -65,10 +83,10 @@ public class ActivityCadastrarPaciente extends AppCompatActivity {
         String sEndereco = tEndereco.getText().toString().trim();
         String sNumero = tNumero.getText().toString().trim();
         String sCidade = tCidade.getText().toString().trim();
-        String sUF = tUF.getText().toString().trim();
+        String sUF = spUF.getSelectedItem().toString().trim();
         String sNumTel = tNumTel.getText().toString().trim();
         String sNumCel = tNumCel.getText().toString().trim();
-        int nGrpSan = spGrpSan.getSelectedItemPosition();
+        String sGrpSan = spGrpSan.getSelectedItem().toString().trim();
         if (sNome.equals("")) {
             Toast.makeText(getApplicationContext(), "O nome não pode estar vazio!", Toast.LENGTH_LONG).show();
         } else if (sEndereco.equals("")) {
@@ -88,7 +106,7 @@ public class ActivityCadastrarPaciente extends AppCompatActivity {
             StringBuilder sql = new StringBuilder();
             sql.append("INSERT INTO paciente(nome,grp_sanguineo,logradouro, numero, cidade, uf, celular,fixo) VALUES (");
             sql.append("'" + sNome + "'" + ", ");
-            sql.append("'" + Integer.toString(nGrpSan) + "'" + ", ");
+            sql.append("'" + sGrpSan + "'" + ", ");
             sql.append("'" + sEndereco + "'" + ", ");
             sql.append("'" + sNumero + "'" + ", ");
             sql.append("'" + sCidade + "'" + ", ");
@@ -108,7 +126,7 @@ public class ActivityCadastrarPaciente extends AppCompatActivity {
             tEndereco.setText("");
             tNumero.setText("");
             tCidade.setText("");
-            tUF.setText("");
+            spUF.setSelection(0);
             tNumTel.setText("");
             tNumCel.setText("");
             db.close();
