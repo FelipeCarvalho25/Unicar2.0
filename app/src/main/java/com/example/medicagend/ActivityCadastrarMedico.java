@@ -126,6 +126,9 @@ public class ActivityCadastrarMedico extends AppCompatActivity {
             tNumCel.setText("");
             db.close();
 
+            Intent i = new Intent(getApplicationContext(), ActivityConsultarMedico.class);
+            startActivity(i);
+
         }
     }
 

@@ -35,31 +35,31 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Paciente:" />
+            android:text="@string/paciente" />
 
         <Spinner
             android:id="@+id/spPacEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Escolha um Paciente" />
+            android:hint="@string/escolha_um_paciente" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Médico:" />
+            android:text="@string/m_dico" />
 
         <Spinner
             android:id="@+id/spMedEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Escolha um Médico" />
+            android:hint="@string/escolha_um_m_dico" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Data da consulta:" />
+            android:text="@string/data_da_consulta" />
 
         <EditText
             android:id="@+id/etDateConEdit"
@@ -73,7 +73,7 @@
             android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hora início:" />
+            android:text="@string/hora_in_cio" />
 
         <EditText
             android:id="@+id/etIniCOnEdit"
@@ -87,7 +87,7 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hora término:" />
+            android:text="@string/hora_t_rmino" />
 
         <EditText
             android:id="@+id/etFimConEdit"
@@ -101,7 +101,7 @@
             android:id="@+id/textView12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Observações" />
+            android:text="@string/observa_es" />
 
         <EditText
             android:id="@+id/etObsEdit"
@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Observações" />
+            android:hint="@string/observa_es" />
 
     </LinearLayout>
 
@@ -131,7 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#9C00BCD4"
-            android:text="Salvar" />
+            android:text="@string/salvar" />
 
         <Button
             android:id="@+id/btn_exc_edit_consult"
@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#9C00BCD4"
-            android:text="Excluir" />
+            android:text="@string/excluir" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

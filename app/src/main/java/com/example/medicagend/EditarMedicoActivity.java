@@ -6,8 +6,10 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +20,7 @@ public class EditarMedicoActivity extends AppCompatActivity {
     EditText tEndereco;
     EditText tNumero;
     EditText tCidade;
-    EditText tUF;
+    Spinner spUF;
     EditText tNumTel;
     EditText tNumCel;
     SQLiteDatabase db;
@@ -32,7 +34,7 @@ public class EditarMedicoActivity extends AppCompatActivity {
         tEndereco = findViewById(R.id.etEndereco);
         tNumero = findViewById(R.id.etNum);
         tCidade = findViewById(R.id.etCidade);
-        tUF = findViewById(R.id.etUF);
+        spUF = findViewById(R.id.spUfMedEdit);
         tNumTel = findViewById(R.id.etTel);
         tNumCel = findViewById(R.id.etCell);
 
@@ -42,9 +44,23 @@ public class EditarMedicoActivity extends AppCompatActivity {
         tEndereco.setText(valores.getStringExtra("logradouro"));
         tNumero.setText(valores.getStringExtra("numero"));
         tCidade.setText(valores.getStringExtra("cidade"));
-        tUF.setText(valores.getStringExtra("uf"));
         tNumTel.setText(valores.getStringExtra("celular"));
         tNumCel.setText(valores.getStringExtra("fixo"));
+        String sUf = valores.getStringExtra("uf");
+
+        String[] aUf = new String[] {"AC","AL", "AM", "AP", "BA","CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO"};
+        ArrayAdapter<String> spArrayAdapterH =
+                new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, aUf);
+        spUF.setAdapter(spArrayAdapterH);
+
+        int aux = 0 ;
+        for (String c : aUf) {
+            if (c.equals(sUf)) {
+                break;
+            }
+            aux ++;
+        }
+        spUF.setSelection(aux);
 
         final String id = valores.getStringExtra("id");
 
@@ -71,7 +87,7 @@ public class EditarMedicoActivity extends AppCompatActivity {
         String sEndereco = tEndereco.getText().toString().trim();
         String sNumero = tNumero.getText().toString().trim();
         String sCidade = tCidade.getText().toString().trim();
-        String sUF = tUF.getText().toString().trim();
+        String sUF = spUF.getSelectedItem().toString().trim();
         String sNumTel = tNumTel.getText().toString().trim();
         String sNumCel = tNumCel.getText().toString().trim();
 

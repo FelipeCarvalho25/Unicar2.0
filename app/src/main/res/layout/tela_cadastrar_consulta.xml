@@ -36,7 +36,7 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Paciente:" />
+            android:text="@string/paciente" />
 
         <Spinner
             android:id="@+id/spPac"
@@ -47,7 +47,7 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Médico:" />
+            android:text="@string/m_dico" />
 
         <Spinner
             android:id="@+id/spMed"
@@ -58,7 +58,7 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Data da consulta:" />
+            android:text="@string/data_da_consulta" />
 
         <EditText
             android:id="@+id/etDateCon"
@@ -72,7 +72,7 @@
             android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hora início:" />
+            android:text="@string/hora_in_cio" />
 
         <EditText
             android:id="@+id/etHorIniCon"
@@ -86,7 +86,7 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hora término:" />
+            android:text="@string/hora_t_rmino" />
 
         <EditText
             android:id="@+id/etHorFimCon"
@@ -100,14 +100,14 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Observações" />
+            android:text="@string/observa_es" />
 
         <EditText
             android:id="@+id/etObs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Observações"
+            android:hint="@string/observa_es"
             android:inputType="textPersonName" />
 
     </LinearLayout>
@@ -119,7 +119,7 @@
         android:layout_height="41dp"
         android:layout_marginTop="45dp"
         android:background="#9C00BCD4"
-        android:text="Cadastrar"
+        android:text="@string/cadastrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

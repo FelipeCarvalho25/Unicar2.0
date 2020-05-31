@@ -267,6 +267,8 @@ public class ActivityCadastrarConsulta extends AppCompatActivity {
             spMedico.setSelection(0);
             spPaciente.setSelection(0);
             db.close();
+            Intent i = new Intent(getApplicationContext(), ActivityConsultarConsultas.class);
+            startActivity(i);
 
         }
     }

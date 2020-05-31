@@ -38,12 +38,6 @@ public class ActivityConsultarMedico extends AppCompatActivity {
                 TextView tvListUfMed =  v.findViewById(R.id.tvListUfMed);
                 TextView tvListCelMed = v.findViewById(R.id.tvListCelMed);
                 TextView tvListTelMed = v.findViewById(R.id.tvListTelMed);
-                tvListEndMed.setVisibility(View.INVISIBLE);
-                tvListTelMed.setVisibility(View.INVISIBLE);
-                tvListCelMed.setVisibility(View.INVISIBLE);
-                tvListUfMed.setVisibility(View.INVISIBLE);
-                tvListCidMed.setVisibility(View.INVISIBLE);
-                tvListNumMed.setVisibility(View.INVISIBLE);
 
 
                 Intent i = new Intent(getApplicationContext(), EditarMedicoActivity.class);

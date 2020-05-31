@@ -20,7 +20,7 @@ public class EditarPacienteActivity extends AppCompatActivity {
     EditText tEndereco;
     EditText tNumero;
     EditText tCidade;
-    EditText tUF;
+    Spinner spUf;
     EditText tNumTel;
     EditText tNumCel;
     SQLiteDatabase db;
@@ -33,7 +33,7 @@ public class EditarPacienteActivity extends AppCompatActivity {
         tEndereco = findViewById(R.id.etEnderecoPAc);
         tNumero = findViewById(R.id.etNumPAc);
         tCidade = findViewById(R.id.etCidadPac);
-        tUF = findViewById(R.id.etUFPac);
+        spUf = findViewById(R.id.spUfPacEdit);
         tNumTel = findViewById(R.id.etTelPac);
         tNumCel = findViewById(R.id.etCellPac);
         spGrpSan = findViewById(R.id.spGrpSan);
@@ -44,7 +44,7 @@ public class EditarPacienteActivity extends AppCompatActivity {
         tEndereco.setText(valores.getStringExtra("logradouro"));
         tNumero.setText(valores.getStringExtra("numero"));
         tCidade.setText(valores.getStringExtra("cidade"));
-        tUF.setText(valores.getStringExtra("uf"));
+        String sUf = valores.getStringExtra("uf");
         tNumTel.setText(valores.getStringExtra("celular"));
         tNumCel.setText(valores.getStringExtra("fixo"));
 
@@ -61,6 +61,10 @@ public class EditarPacienteActivity extends AppCompatActivity {
         ArrayAdapter<String> spArrayAdapter =
                 new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, aGrpSan);
         spGrpSan.setAdapter(spArrayAdapter);
+        String[] aUf = new String[] {"AC","AL", "AM", "AP", "BA","CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO"};
+        ArrayAdapter<String> spArrayAdapterH =
+                new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, aUf);
+        spUf.setAdapter(spArrayAdapterH);
 
         int aux = 0 ;
         for (String c : aGrpSan) {
@@ -70,6 +74,17 @@ public class EditarPacienteActivity extends AppCompatActivity {
             aux ++;
         }
         spGrpSan.setSelection(aux);
+
+
+        aux = 0 ;
+        for (String c : aUf) {
+            if (c.equals(sUf)) {
+                break;
+            }
+            aux ++;
+        }
+        spUf.setSelection(aux);
+
         final String id = valores.getStringExtra("id");
 
         Button btn_save = findViewById(R.id.btn_save_edit_pacient);
@@ -93,7 +108,7 @@ public class EditarPacienteActivity extends AppCompatActivity {
         String sEndereco = tEndereco.getText().toString().trim();
         String sNumero = tNumero.getText().toString().trim();
         String sCidade = tCidade.getText().toString().trim();
-        String sUF = tUF.getText().toString().trim();
+        String sUF = spUf.getSelectedItem().toString().trim();
         String sNumTel = tNumTel.getText().toString().trim();
         String sNumCel = tNumCel.getText().toString().trim();
         String sGrpSan = spGrpSan.getSelectedItem().toString();

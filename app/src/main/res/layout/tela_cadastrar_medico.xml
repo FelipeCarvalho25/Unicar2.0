@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/simb" />
 
     <LinearLayout
-        android:layout_width="400dp"
+        android:layout_width="389dp"
         android:layout_height="604dp"
         android:layout_marginTop="7dp"
         android:orientation="vertical"
@@ -35,77 +35,77 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nome do Médico:" />
+            android:text="@string/nome_do_m_dico" />
 
         <EditText
             android:id="@+id/etNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Nome" />
+            android:hint="@string/nome"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CRM:" />
+            android:text="@string/crm" />
 
         <EditText
             android:id="@+id/etCRM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="CRM" />
+            android:hint="@string/crm"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Logradouro:" />
+            android:text="@string/logradouro" />
 
         <EditText
             android:id="@+id/etEndereco"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Logradouro" />
+            android:hint="@string/logradouro"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Número:" />
+            android:text="@string/n_mero" />
 
         <EditText
             android:id="@+id/etNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Número" />
+            android:hint="@string/n_mero"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cidade:" />
+            android:text="@string/cidade" />
 
         <EditText
             android:id="@+id/etCidade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Cidade" />
+            android:hint="@string/cidade"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="UF:" />
+            android:text="@string/uf" />
 
         <Spinner
             android:id="@+id/spUfMed"
@@ -116,29 +116,29 @@
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Telefone Celular:" />
+            android:text="@string/telefone_celular" />
 
         <EditText
             android:id="@+id/etCell"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="phone"
-            android:hint="Celular" />
+            android:hint="@string/celular"
+            android:inputType="phone" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Telefone Fixo:" />
+            android:text="@string/telefone_fixo" />
 
         <EditText
             android:id="@+id/etTel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="phone"
-            android:hint="Telefone Fixo" />
+            android:hint="@string/telefone_fixo"
+            android:inputType="phone" />
 
         <Button
             android:id="@+id/btn_cadastrarMedi"
@@ -146,7 +146,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#9C00BCD4"
-            android:text="Cadastrar" />
+            android:text="@string/cadastrar" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

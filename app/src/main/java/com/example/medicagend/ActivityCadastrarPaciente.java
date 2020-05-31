@@ -131,6 +131,9 @@ public class ActivityCadastrarPaciente extends AppCompatActivity {
             tNumCel.setText("");
             db.close();
 
+            Intent i = new Intent(getApplicationContext(), ActivityConsultarPaciente.class);
+            startActivity(i);
+
         }
     }
 
